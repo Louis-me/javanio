@@ -19,12 +19,15 @@ public class HttpClientInboundHandler extends ChannelInboundHandlerAdapter {
         if (msg instanceof HttpResponse) 
         {
             HttpResponse response = (HttpResponse) msg;
-            System.out.println("CONTENT_TYPE:" + response.headers().get(HttpHeaders.Names.CONTENT_TYPE));
+//            System.out.println("CONTENT_TYPE:" + response.headers().get(HttpHeaders.Names.CONTENT_TYPE));
+            System.out.println("HTTP_CODE:" + response.getStatus());
+
         }
         if(msg instanceof HttpContent)
         {
             HttpContent content = (HttpContent)msg;
             ByteBuf buf = content.content();
+
             System.out.println(buf.toString(io.netty.util.CharsetUtil.UTF_8));
             buf.release();
         }
